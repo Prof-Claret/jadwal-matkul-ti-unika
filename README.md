@@ -11,11 +11,11 @@ Biar kita gak pusing lagi nyari-nyari jadwal di grup WhatsApp yang kadang tertim
 
 Aplikasi ini dirancang dengan fokus pada kemudahan pengguna:
 
-* ** Tampilan Clean & Simple**  
+*  Tampilan Clean & Simple
   Sengaja dibikin nggak ribet biar gampang diliat pas buru-buru mau masuk kelas.
-* ** Desain Responsive**  
+*  Desain Responsive
   Enak dibuka lewat *smartphone*, jadi pas di jalan pun bisa ngecek jadwal dengan cepat.
-* ** Realtime & Otomatis**  
+*  Realtime & Otomatis
   Menyesuaikan hari dan jam secara otomatis biar kita langsung tahu jadwal yang sedang atau akan berlangsung.
 
 ---
