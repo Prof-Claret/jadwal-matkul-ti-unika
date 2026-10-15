@@ -32,7 +32,6 @@ Aplikasi ini dirancang dengan fokus pada kemudahan pengguna:
 
 ##  Tampilan Aplikasi
 
->  *Hubungkan tangkapan layar (screenshot) aplikasi kamu di bawah ini agar halaman README terlihat lebih interaktif!*
 
 <p align="center">
   <img src="./Screenshot%20(35).png" alt="Preview Aplikasi" width="600">
@@ -46,11 +45,11 @@ Jika kamu ingin menjalankan atau mengembangkan aplikasi ini di laptop sendiri:
 
 1. **Clone Repositori Ini**
    ```bash
-   git clone https://github.com
+   git clone [https://github.com](https://github.com/Prof-Claret/jadwal-matkul-ti-unika.git)
    ```
 2. **Masuk ke Direktori Project**
    ```bash
-   cd nama-repo
+   cd jadwal-matkul-ti-unika
    ```
 3. **Buka Aplikasi**
    * Cukup klik 2x pada file `index.html` di browser kamu, atau jalankan menggunakan extension *Live Server* di VS Code.
