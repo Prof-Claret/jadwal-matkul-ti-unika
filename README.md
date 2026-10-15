@@ -35,7 +35,7 @@ Aplikasi ini dirancang dengan fokus pada kemudahan pengguna:
 >  *Hubungkan tangkapan layar (screenshot) aplikasi kamu di bawah ini agar halaman README terlihat lebih interaktif!*
 
 <p align="center">
-  <img src="https://placeholder.com" alt="Preview Aplikasi" width="600">
+  <img src="./Screenshot%20(35).png" alt="Preview Aplikasi" width="600">
 </p>
 
 ---
