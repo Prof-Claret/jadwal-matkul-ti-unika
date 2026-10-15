@@ -1,13 +1,5 @@
 # 🗓️ Jadwal Kuliah TI-1A
 
-<p align="center">
-  <img src="https://shields.io" alt="Status">
-  <img src="https://shields.io" alt="Kelas">
-  <img src="https://shields.io" alt="Platform">
-</p>
-
----
-
 Halo teman-teman sekelas! 
 Repo ini berisi aplikasi **Jadwal Kuliah** khusus untuk kelas **Teknik Informatika 1A**. 
 
