@@ -8,27 +8,27 @@
 
 ---
 
-Halo teman-teman sekelas! 👋  
+Halo teman-teman sekelas! 
 Repo ini berisi aplikasi **Jadwal Kuliah** khusus untuk kelas **Teknik Informatika 1A**. 
 
-Biar kita gak pusing lagi nyari-nyari jadwal di grup WhatsApp yang kadang tertimbun chat lain, semuanya dibikin simpel, interaktif, dan bisa diakses langsung lewat HP atau laptop kapan saja! 🚀
+Biar kita gak pusing lagi nyari-nyari jadwal di grup WhatsApp yang kadang tertimbun chat lain, semuanya dibikin simpel, interaktif, dan bisa diakses langsung lewat HP atau laptop kapan saja! 
 
 ---
 
-## ✨ Fitur Utama
+##  Fitur Utama
 
 Aplikasi ini dirancang dengan fokus pada kemudahan pengguna:
 
-* **🎨 Tampilan Clean & Simple**  
+* ** Tampilan Clean & Simple**  
   Sengaja dibikin nggak ribet biar gampang diliat pas buru-buru mau masuk kelas.
-* **📱 Desain Responsive**  
+* ** Desain Responsive**  
   Enak dibuka lewat *smartphone*, jadi pas di jalan pun bisa ngecek jadwal dengan cepat.
-* **⚡ Realtime & Otomatis**  
+* ** Realtime & Otomatis**  
   Menyesuaikan hari dan jam secara otomatis biar kita langsung tahu jadwal yang sedang atau akan berlangsung.
 
 ---
 
-## 🛠️ Tech Stack (Teknologi yang Digunakan)
+##  Tech Stack (Teknologi yang Digunakan)
 
 | Komponen | Teknologi | Fungsi |
 | :--- | :--- | :--- |
@@ -38,9 +38,9 @@ Aplikasi ini dirancang dengan fokus pada kemudahan pengguna:
 
 ---
 
-## 📸 Tampilan Aplikasi
+##  Tampilan Aplikasi
 
-> 💡 *Hubungkan tangkapan layar (screenshot) aplikasi kamu di bawah ini agar halaman README terlihat lebih interaktif!*
+>  *Hubungkan tangkapan layar (screenshot) aplikasi kamu di bawah ini agar halaman README terlihat lebih interaktif!*
 
 <p align="center">
   <img src="https://placeholder.com" alt="Preview Aplikasi" width="600">
@@ -48,7 +48,7 @@ Aplikasi ini dirancang dengan fokus pada kemudahan pengguna:
 
 ---
 
-## 🚀 Cara Menggunakan Lokal
+##  Cara Menggunakan Lokal
 
 Jika kamu ingin menjalankan atau mengembangkan aplikasi ini di laptop sendiri:
 
@@ -65,7 +65,7 @@ Jika kamu ingin menjalankan atau mengembangkan aplikasi ini di laptop sendiri:
 
 ---
 
-💬 **Saran & Masukan:**  
+ **Saran & Masukan:**  
 Punya ide fitur baru atau nemu *bug* di jadwalnya? Langsung aja chat di grup atau bikin *Issue* di repo ini ya! 
 
-*Made with 💻 and ☕ for TI-1A.*
+*Made with  and for TI-1A.*
