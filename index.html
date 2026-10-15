@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="Jadwal kuliah Teknik Informatika 1A semester ganjil 2026/2027.">
+  <title>Jadwal TI 1A | Semester Ganjil 2026/2027</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Jadwal TI 1A beranda">
+      <span class="brand-mark">TI<span>1A</span></span>
+      <span><strong>CLASSROOM</strong><small>Fakultas Ilmu Komputer</small></span>
+    </a>
+    <div class="top-actions">
+      <span class="semester-pill"><i></i> GANJIL 2026/2027</span>
+      <button class="admin-open-btn" id="adminOpenBtn" title="Login admin">⌑ <span>Admin</span></button>
+      <button class="icon-btn" id="themeToggle" title="Ganti tema" aria-label="Ganti tema">☼</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> YOUR WEEK, DECODED</p>
+        <h1>Jadwal kuliah<br><span>TI 1A.</span></h1>
+        <p class="hero-desc">Semua jadwal dalam satu tempat. Cari mata kuliah, cek kode waktu, dan atur tampilan sesuai kebutuhan. Karena mengingat semua kode sendiri bukan mata kuliah wajib.</p>
+        <div class="hero-meta">
+          <span>📅 Senin – Jumat</span><span>📍 FIKOM · UNIKA Santo Thomas</span>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orb orb-one"></div><div class="orb orb-two"></div>
+        <div class="floating-card fc-top"><span class="fc-dot"></span><span>SEMESTER I</span><b>2026/27</b></div>
+        <div class="clock-card"><span class="clock-label">NEXT SESSION</span><strong id="nextCode">GHI</strong><span id="nextTime">14:00 – 16:30</span><div class="clock-progress"><i></i></div></div>
+        <div class="floating-card fc-bottom"><span class="mini-bars">▂ ▅ ▇</span><span>15 ENTRI JADWAL</span></div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Ringkasan jadwal">
+      <article class="stat-card"><span class="stat-icon purple">▦</span><div><small>HARI KULIAH</small><strong>5 <em>hari</em></strong></div></article>
+      <article class="stat-card"><span class="stat-icon cyan">◷</span><div><small>MATA KULIAH</small><strong id="courseCount">10 <em>nama unik</em></strong></div></article>
+      <article class="stat-card"><span class="stat-icon orange">⌘</span><div><small>TOTAL ENTRI</small><strong>15 <em>baris</em></strong></div></article>
+    </section>
+
+    <section class="schedule-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE TIMETABLE</p><h2>Jadwal mingguan</h2><p class="muted">Pilih hari atau cari kelas secara langsung.</p></div>
+        <button class="secondary-btn" id="printBtn">⤓ <span>Cetak / PDF</span></button>
+      </div>
+
+      <div class="toolbar">
+        <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Cari mata kuliah, dosen, ruang..." autocomplete="off"><kbd>⌘ K</kbd></label>
+        <div class="filter-wrap">
+          <label class="sr-only" for="dayFilter">Filter hari</label>
+          <select id="dayFilter"><option value="Semua">Semua hari</option><option>Senin</option><option>Selasa</option><option>Rabu</option><option>Kamis</option><option>Jumat</option></select>
+          <label class="sr-only" for="typeFilter">Filter jenis</label>
+          <select id="typeFilter"><option value="Semua">Semua jenis</option><option value="Teori">Teori</option><option value="Praktikum">Praktikum</option><option value="Penugasan">Penugasan</option></select>
+        </div>
+      </div>
+
+      <div class="day-tabs" id="dayTabs" role="tablist" aria-label="Pilih hari">
+        <button class="day-tab active" data-day="Semua">Semua <span>15</span></button>
+        <button class="day-tab" data-day="Senin">Senin</button><button class="day-tab" data-day="Selasa">Selasa</button>
+        <button class="day-tab" data-day="Rabu">Rabu</button><button class="day-tab" data-day="Kamis">Kamis</button>
+        <button class="day-tab" data-day="Jumat">Jumat</button>
+      </div>
+
+      <div class="schedule-list" id="scheduleList" aria-live="polite"></div>
+      <div class="empty-state hidden" id="emptyState"><span>⌕</span><h3>Jadwal tidak ditemukan</h3><p>Coba kata kunci atau filter yang lain.</p><button class="secondary-btn" id="resetFilters">Reset filter</button></div>
+      <p class="result-note" id="resultNote"></p>
+      <section class="announcements-section" id="announcementsSection">
+        <div class="announcement-heading"><div><p class="eyebrow">DAY MARKERS</p><h3>Penanda hari</h3><p class="muted">Info khusus seperti kelas ditiadakan, kuis, ujian, atau perubahan ruang.</p></div><span class="public-label">INFO KELAS</span></div>
+        <div id="announcementList" class="announcement-list"></div>
+      </section>
+    </section>
+
+    <section class="legend-section" id="kode-jam">
+      <div class="section-heading">
+        <div><p class="eyebrow">TIME CODE REFERENCE</p><h2>Arti kode jam</h2><p class="muted">Kode dan jam berikut disalin dari legenda file jadwal resmi.</p></div>
+        <span class="legend-badge">12 KODE WAKTU</span>
+      </div>
+      <div class="legend-grid" id="legendGrid"></div>
+      <div class="note-card"><span class="note-icon">i</span><p><strong>Catatan:</strong> kode menunjukkan rentang waktu perkuliahan. Durasi kode tiga huruf umumnya 2 jam 30 menit, sedangkan dua huruf 1 jam 40 menit. Kode <b>ASS</b> berarti <b>Asisten Lab</b>, bukan jam kuliah. Jadwal penugasan tetap ditampilkan mengikuti kode yang tercantum di dokumen.</p></div>
+    </section>
+
+    <section class="details-section">
+      <div class="section-heading"><div><p class="eyebrow">QUICK REFERENCE</p><h2>Yang perlu diingat</h2></div></div>
+      <div class="details-grid">
+        <article class="detail-card"><span class="detail-icon">⌁</span><h3>Lokasi ruang</h3><p><b>I/5, I/4, I/3</b> dan seterusnya adalah kode ruang sebagaimana tercantum pada roster. Praktikum berlangsung di lab yang ditulis di jadwal.</p></article>
+        <article class="detail-card"><span class="detail-icon">▤</span><h3>Grup praktikum</h3><p>Entri Grup A1 dan A2 ditampilkan terpisah. Periksa pembagian grup dari dosen atau program studi sebelum menganggap keduanya sesi yang harus diikuti.</p></article>
+        <article class="detail-card"><span class="detail-icon">↗</span><h3>Gunakan offline</h3><p>Website ini tidak memakai database atau API. Setelah deploy, halaman jadwal dapat dibuka sebagai situs statis dengan biaya hosting Vercel gratis sesuai batas paket.</p></article>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-brand">TI<span>1A</span> <small>CLASSROOM</small></div>
+      <p>Data jadwal: Semester Ganjil 2026/2027 · FIKOM</p>
+      <div class="footer-links"><a href="#kode-jam">Lihat kode jam ↑</a><button id="aboutOpenBtn" class="footer-about-btn">About Dev · XII DEV</button></div>
+    </footer>
+  </main>
+
+  <div class="modal-backdrop hidden" id="adminModal" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
+    <div class="modal-card">
+      <button class="modal-close" data-close-modal="adminModal" aria-label="Tutup">×</button>
+      <p class="eyebrow">RESTRICTED AREA</p><h2 id="adminModalTitle">Admin access.</h2>
+      <p class="muted">Masuk untuk menambahkan penanda atau pengumuman pada hari tertentu.</p>
+      <form id="adminLoginForm" class="admin-form">
+        <label>Username<input id="adminUsername" name="username" autocomplete="username" required placeholder="Username admin"></label>
+        <label>Password<input id="adminPassword" name="password" type="password" autocomplete="current-password" required placeholder="Password admin"></label>
+        <p id="loginError" class="form-error hidden">Username atau password salah.</p>
+        <button class="primary-btn" type="submit">Login admin →</button>
+      </form>
+      <p class="security-note">Mode demo statis: login ini bukan autentikasi aman untuk data rahasia. Baca README sebelum dipublikasikan.</p>
+    </div>
+  </div>
+
+  <div class="modal-backdrop hidden" id="adminPanelModal" role="dialog" aria-modal="true" aria-labelledby="adminPanelTitle">
+    <div class="modal-card modal-wide">
+      <button class="modal-close" data-close-modal="adminPanelModal" aria-label="Tutup">×</button>
+      <p class="eyebrow">CLASS MANAGEMENT</p><h2 id="adminPanelTitle">Penanda jadwal.</h2>
+      <p class="muted">Buat info yang tampil di halaman publik untuk hari yang dipilih.</p>
+      <form id="announcementForm" class="admin-form">
+        <div class="form-grid">
+          <label>Hari<select id="announcementDay" required><option>Senin</option><option>Selasa</option><option>Rabu</option><option>Kamis</option><option>Jumat</option></select></label>
+          <label>Kategori<select id="announcementType" required><option value="info">Informasi</option><option value="warning">Perubahan jadwal</option><option value="cancel">Kelas ditiadakan</option><option value="exam">Kuis / Ujian</option></select></label>
+        </div>
+        <label>Judul penanda<input id="announcementTitle" required maxlength="70" placeholder="Contoh: Kuliah pindah ke ruang I/7"></label>
+        <label>Detail<textarea id="announcementDetails" rows="3" maxlength="240" placeholder="Tulis keterangan singkat untuk mahasiswa..."></textarea></label>
+        <div class="form-grid">
+          <label>Tanggal (opsional)<input id="announcementDate" type="date"></label>
+          <label>Warna penanda<select id="announcementColor"><option value="purple">Ungu</option><option value="cyan">Cyan</option><option value="orange">Oranye</option><option value="green">Hijau</option></select></label>
+        </div>
+        <button class="primary-btn" type="submit">＋ Tambahkan penanda</button>
+      </form>
+      <div class="admin-manage-heading"><strong>Penanda yang tersimpan</strong><button id="adminLogoutBtn" class="secondary-btn">Logout</button></div>
+      <div id="adminAnnouncementList" class="admin-announcement-list"></div>
+      <p class="security-note">Penanda tersimpan di browser ini (localStorage), bukan di server. Pengunjung lain tidak otomatis melihat perubahan ini.</p>
+    </div>
+  </div>
+
+  <div class="modal-backdrop hidden" id="aboutModal" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+    <div class="modal-card about-card">
+      <button class="modal-close" data-close-modal="aboutModal" aria-label="Tutup">×</button>
+      <div class="dev-monogram">XII<span>.</span></div>
+      <p class="eyebrow">BUILT WITH CURIOSITY</p><h2 id="aboutTitle">XII DEV</h2>
+      <p class="about-lead">Small tools. Useful things.</p>
+      <p class="muted">XII DEV adalah identitas pengembang di balik TI1A Classroom. Proyek ini dibuat untuk membantu mahasiswa melihat jadwal, memahami kode jam, dan mendapatkan info perubahan kelas dengan lebih praktis.</p>
+      <div class="dev-tags"><span>FRONTEND</span><span>HTML · CSS · JS</span><span>VERCEL READY</span></div>
+      <button class="primary-btn" data-close-modal="aboutModal">Kembali ke jadwal</button>
+    </div>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>
