@@ -132,3 +132,7 @@ footer{border-top:3px solid var(--line)}
  .semester-pill{display:none}
  h1{font-size:47px}
 }
+
+/* Realtime next-session details */
+.next-course{font-size:10px;line-height:1.45;font-weight:800;color:#171717;margin:9px 0 5px;min-height:28px}.next-status{font:9px/1.5 'DM Mono',monospace;color:#383838;margin:0;min-height:14px}.clock-card.is-live{background:#ffdf4d}.clock-card.is-live .clock-label{color:#171717}.clock-card.is-live strong{color:#171717}.clock-card.is-live #nextProgress{background:#087fdb}.clock-card.is-idle{background:#fff}.clock-progress i{transition:width .4s linear}
+@media(max-width:600px){.next-course{font-size:9px}.next-status{font-size:8px}.clock-card{max-width:190px}}

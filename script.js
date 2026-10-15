@@ -78,6 +78,50 @@ const uniqueCourses=new Set(schedule.map(x=>x.course.replace(/ GRUP A[12]$/,""))
 $("courseCount").innerHTML=`${uniqueCourses} <em>nama unik</em>`;
 renderLegend();renderSchedule();
 
+// Live Next Session: calculates the current/next class from the browser's local clock.
+const weekdayNames = ["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"];
+const weekdayIndex = {"Senin":1,"Selasa":2,"Rabu":3,"Kamis":4,"Jumat":5};
+function minutesFromClock(value){const m=String(value).match(/(\d{2}):(\d{2})/);return m?Number(m[1])*60+Number(m[2]):0;}
+function clockText(total){const n=Math.max(0,Math.floor(total));return `${String(Math.floor(n/60)).padStart(2,"0")}:${String(n%60).padStart(2,"0")}`;}
+function durationText(ms){let sec=Math.max(0,Math.floor(ms/1000));const days=Math.floor(sec/86400);sec%=86400;const hours=Math.floor(sec/3600);sec%=3600;const mins=Math.floor(sec/60);const seconds=sec%60;if(days)return `${days}h ${hours}j ${mins}m`;if(hours)return `${hours}j ${mins}m`;if(mins)return `${mins}m ${seconds}d`;return `${seconds} detik`;}
+function getLiveSession(now){
+ const todayIndex=now.getDay();const nowMinutes=now.getHours()*60+now.getMinutes()+now.getSeconds()/60;
+ // First prioritize a class currently in progress today.
+ const todayName=weekdayNames[todayIndex];
+ const todayClasses=schedule.filter(x=>x.day===todayName).map(x=>{const raw=timeMap[x.code]||"";const parts=raw.split(/–|-/).map(v=>v.trim());return {...x,start:minutesFromClock(parts[0]||"00:00"),end:minutesFromClock(parts[1]||parts[0]||"00:00")};}).sort((a,b)=>a.start-b.start);
+ const active=todayClasses.find(x=>nowMinutes>=x.start&&nowMinutes<x.end);
+ if(active){const end=new Date(now);end.setHours(Math.floor(active.end/60),active.end%60,0,0);return {item:active,state:"live",start:new Date(now.getFullYear(),now.getMonth(),now.getDate(),Math.floor(active.start/60),active.start%60),end};}
+ // Otherwise search forward for the next scheduled start, including next week.
+ for(let offset=0;offset<=7;offset++){
+  const date=new Date(now);date.setHours(0,0,0,0);date.setDate(date.getDate()+offset);
+  const name=weekdayNames[date.getDay()];if(!weekdayIndex[name])continue;
+  const classes=schedule.filter(x=>x.day===name).map(x=>{const raw=timeMap[x.code]||"";const parts=raw.split(/–|-/).map(v=>v.trim());return {...x,start:minutesFromClock(parts[0]||"00:00"),end:minutesFromClock(parts[1]||parts[0]||"00:00")};}).sort((a,b)=>a.start-b.start);
+  const next=classes.find(x=>offset>0||x.start>nowMinutes);
+  if(next){const start=new Date(date);start.setHours(Math.floor(next.start/60),next.start%60,0,0);const end=new Date(date);end.setHours(Math.floor(next.end/60),next.end%60,0,0);return {item:next,state:"next",start,end};}
+ }
+ return null;
+}
+function updateNextSession(){
+ const card=$("nextSessionCard"),now=new Date(),result=getLiveSession(now);
+ if(!result){$("nextLabel").textContent="NEXT SESSION";$("nextCode").textContent="—";$("nextTime").textContent="Jadwal belum tersedia";$("nextCourse").textContent="Tidak ada sesi mendatang";$("nextStatus").textContent="";$("nextProgress").style.width="0%";card.classList.remove("is-live");return;}
+ const {item,state,start,end}=result;
+ $("nextLabel").textContent=state==="live"?"SESSION IN PROGRESS":"NEXT SESSION · REALTIME";
+ $("nextCode").textContent=item.code;
+ $("nextTime").textContent=`${clockText(item.start)} – ${clockText(item.end)}`;
+ $("nextCourse").textContent=item.course.replace(/ \(TI-1A\)/g,"");
+ if(state==="live"){
+  $("nextStatus").textContent=`SEDANG BERLANGSUNG · selesai ${durationText(end-now)} lagi`;
+  $("nextProgress").style.width=`${Math.min(100,Math.max(0,((now-start)/(end-start))*100))}%`;
+  card.classList.add("is-live");
+ }else{
+  const dateLabel=start.toLocaleDateString("id-ID",{weekday:"short",day:"numeric",month:"short"});
+  $("nextStatus").textContent=`MULAI DALAM ${durationText(start-now)} · ${dateLabel.toUpperCase()}`;
+  $("nextProgress").style.width="0%";
+  card.classList.remove("is-live");
+ }
+}
+updateNextSession();setInterval(updateNextSession,1000);
+
 // Day markers and XII DEV panel. This static demo stores markers in this browser only.
 const MARKERS_KEY = "ti1a-classroom-markers-v1";
 const ADMIN_USER = "admin";
