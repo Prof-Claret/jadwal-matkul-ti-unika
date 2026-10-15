@@ -45,7 +45,7 @@ Jika kamu ingin menjalankan atau mengembangkan aplikasi ini di laptop sendiri:
 
 1. **Clone Repositori Ini**
    ```bash
-   git clone [https://github.com](https://github.com/Prof-Claret/jadwal-matkul-ti-unika.git)
+   git clone https://github.com/Prof-Claret/jadwal-matkul-ti-unika.git
    ```
 2. **Masuk ke Direktori Project**
    ```bash
